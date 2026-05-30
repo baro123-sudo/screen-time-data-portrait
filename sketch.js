@@ -10,7 +10,7 @@ let apps = [
 ];
 
 function setup() {
-  createCanvas(1920,1080);
+  createCanvas(windowWidth, windowHeight);
 }
 
 function rr(x, y, w, h, r) {
@@ -204,4 +204,7 @@ function draw() {
   rect(0, 0, width, height);
 
   drawGirl(width/2, height * 0.75, min(width, height) * 0.2);
+
+  function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }

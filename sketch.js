@@ -1,16 +1,18 @@
 let apps = [
-  { name: "Spotify", time: 120,  color: "#1DB954" },
-  { name: "YouTube", time: 100,  color: "#FF0000" },
-  { name: "Chrome", time: 50,  color: "#4285F4" },
-  { name: "Reddit", time: 30, color: "#FF4500" },
-  { name: "WhatsApp", time: 30,  color: "#25D366" },
+  { name: "Spotify",   time: 120, color: "#1DB954" },
+  { name: "YouTube",   time: 100, color: "#FF0000" },
+  { name: "Chrome",    time: 50,  color: "#4285F4" },
+  { name: "Reddit",    time: 30,  color: "#FF4500" },
+  { name: "WhatsApp",  time: 30,  color: "#25D366" },
   { name: "Pinterest", time: 20,  color: "#E60023" },
-  
-  
 ];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function rr(x, y, w, h, r) {
@@ -33,7 +35,6 @@ function drawGirl(cx, cy, s) {
   let shirt = color('#9B59B6');
   let lip = color('#E07070');
 
-  // LONG HAIR BACK
   fill(hair); noStroke();
   beginShape();
   vertex(cx - s*0.42, cy - s*0.42);
@@ -49,7 +50,6 @@ function drawGirl(cx, cy, s) {
   bezierVertex(cx+s*0.52,cy+s*0.55, cx+s*0.48,cy+s*0.1, cx+s*0.28,cy-s*0.3);
   endShape(CLOSE);
 
-  // BODY
   fill(shirt);
   beginShape();
   vertex(cx - s*0.42, cy + s*0.62);
@@ -58,15 +58,11 @@ function drawGirl(cx, cy, s) {
   bezierVertex(cx+s*0.72,cy+s*1.0, cx+s*0.65,cy+s*0.75, cx+s*0.42,cy+s*0.62);
   endShape(CLOSE);
 
-  // NECK
   fill(skin); noStroke();
   rr(cx - s*0.1, cy + s*0.5, s*0.2, s*0.18, s*0.06);
-
-  // HEAD
   fill(skin);
   ellipse(cx, cy, s*0.88, s*1.0);
 
-  // HAIR TOP
   fill(hair);
   ellipse(cx, cy - s*0.34, s*0.92, s*0.36);
   ellipse(cx - s*0.38, cy - s*0.1, s*0.24, s*0.44);
@@ -75,82 +71,66 @@ function drawGirl(cx, cy, s) {
   line(cx, cy - s*0.52, cx, cy - s*0.60);
   noStroke();
 
-  // EARS
   fill(skin);
   ellipse(cx - s*0.45, cy + s*0.04, s*0.13, s*0.18);
   ellipse(cx + s*0.45, cy + s*0.04, s*0.13, s*0.18);
-
-  // EARRINGS
   fill('#FFD700');
   circle(cx - s*0.45, cy + s*0.1, s*0.04);
   circle(cx + s*0.45, cy + s*0.1, s*0.04);
 
-  // EYEBROWS
   fill(hair); noStroke();
   push(); translate(cx - s*0.17, cy - s*0.19); rotate(0.1);
   rr(-s*0.11, -s*0.022, s*0.22, s*0.044, s*0.022); pop();
   push(); translate(cx + s*0.17, cy - s*0.19); rotate(-0.1);
   rr(-s*0.11, -s*0.022, s*0.22, s*0.044, s*0.022); pop();
 
-  // EYES whites
   fill(255);
   ellipse(cx - s*0.17, cy - s*0.08, s*0.2, s*0.144);
   ellipse(cx + s*0.17, cy - s*0.08, s*0.2, s*0.144);
-  // iris
   fill('#4A3000');
   circle(cx - s*0.17, cy - s*0.065, s*0.096);
   circle(cx + s*0.17, cy - s*0.065, s*0.096);
-  // pupils
   fill(20);
   circle(cx - s*0.17, cy - s*0.06, s*0.056);
   circle(cx + s*0.17, cy - s*0.06, s*0.056);
-  // shine
   fill(255);
   circle(cx - s*0.158, cy - s*0.072, s*0.026);
   circle(cx + s*0.182, cy - s*0.072, s*0.026);
-  // lashes
   stroke(20); strokeWeight(1.5);
   for (let i = -2; i <= 2; i++) {
     line(cx-s*0.17+i*s*0.022, cy-s*0.148, cx-s*0.17+i*s*0.028, cy-s*0.175);
     line(cx+s*0.17+i*s*0.022, cy-s*0.148, cx+s*0.17+i*s*0.028, cy-s*0.175);
   }
 
-  // BLUSH
   noStroke();
   fill(255, 160, 140, 90);
   ellipse(cx - s*0.3, cy + s*0.04, s*0.2, s*0.11);
   ellipse(cx + s*0.3, cy + s*0.04, s*0.2, s*0.11);
 
-  // NOSE
   fill(200, 130, 100, 128);
   arc(cx - s*0.055, cy + s*0.13, s*0.056, s*0.056, 0, PI);
   arc(cx + s*0.055, cy + s*0.13, s*0.056, s*0.056, 0, PI);
 
-  // MOUTH
   fill(lip); noStroke();
   arc(cx, cy + s*0.25, s*0.18, s*0.18, 0.15, PI - 0.15);
   fill(255);
   arc(cx, cy + s*0.26, s*0.13, s*0.13, 0.2, PI - 0.2);
 
-  // ARMS
   fill(shirt); noStroke();
   push(); translate(cx - s*0.52, cy + s*0.88); rotate(0.35);
   rr(-s*0.09, 0, s*0.18, s*0.38, s*0.09); pop();
   push(); translate(cx + s*0.52, cy + s*0.88); rotate(-0.35);
   rr(-s*0.09, 0, s*0.18, s*0.38, s*0.09); pop();
 
-  // HANDS
   fill(skin);
   ellipse(cx - s*0.28, cy + s*1.18, s*0.2, s*0.15);
   ellipse(cx + s*0.28, cy + s*1.18, s*0.2, s*0.15);
 
-  // PHONE
   let pw = s*0.3, ph = s*0.5;
   let px = cx - pw/2, py = cy + s*0.7;
   fill(30); noStroke();
   rr(px, py, pw, ph, s*0.04);
 
-  // screen — top app colour
   let total = apps.reduce((a, b) => a + b.time, 0);
   let top = apps.slice().sort((a, b) => b.time - a.time)[0];
   let c = color(top.color);
@@ -160,19 +140,15 @@ function drawGirl(cx, cy, s) {
   let si = s*0.022;
   rr(px+si, py+si*2.5, pw-si*2, ph-si*4.5, s*0.02);
 
-  // screen shine
   fill(255, 40);
   rr(px+si*2, py+si*3, (pw-si*2)*0.4, (ph-si*4.5)*0.3, s*0.01);
 
-  // notch
   fill(30); noStroke();
   circle(cx, py + s*0.032, s*0.044);
 
-  // home bar
   fill(255, 80);
   rr(cx - s*0.065, py + ph - s*0.05, s*0.13, s*0.016, s*0.008);
 
-  // gaze lines
   stroke(255, 26); strokeWeight(1);
   drawingContext.setLineDash([3, 6]);
   line(cx-s*0.17, cy-s*0.04, cx-s*0.05, py+s*0.09);
@@ -183,28 +159,34 @@ function drawGirl(cx, cy, s) {
 function draw() {
   background(0, 25);
   let total = apps.reduce((s, a) => s + a.time, 0);
+
+  let barAreaHeight = height * 0.6;
+  let barW = width / apps.length; // equal width for each bar
   let x = 0;
 
   for (let i = 0; i < apps.length; i++) {
     let a = apps[i];
-    let w = (a.time / total) * width;
-    let breathe = sin(frameCount * 0.025 + i * 0.9) * 20;
+    let w = barW;
+    let breathe = sin(frameCount * 0.025 + i * 0.9) * 8;
+    let barH = (a.time / apps[0].time) * barAreaHeight;
     let c = color(a.color);
-    c.setAlpha(mouseX > x && mouseX < x + w ? 180 : 110);
+    let isHovered = mouseX > x && mouseX < x + w;
+    c.setAlpha(isHovered ? 220 : 130);
     fill(c); noStroke();
-    rect(x, breathe, w, height);
-    if (mouseX > x && mouseX < x + w) {
-      fill(255); textSize(15); textAlign(CENTER);
-      text(a.name + "\n" + a.time + " mins", x + w/2, height/2);
-    }
+    rect(x + 4, breathe, w - 8, barH);
+
+    // Label below each bar
+    fill(255, isHovered ? 255 : 180);
+    textSize(13);
+    textAlign(CENTER);
+    text(a.name + "\n" + a.time + " mins", x + w / 2, barH + breathe + 35);
+
     x += w;
   }
 
   fill(0, 56); noStroke();
   rect(0, 0, width, height);
 
-  drawGirl(width/2, height * 0.75, min(width, height) * 0.2);
-
-  function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  // Girl centred at bottom
+  drawGirl(width / 2, height * 0.78, min(width, height) * 0.14);
 }

@@ -169,39 +169,41 @@ function drawGirl(cx, cy, s) {
 
 function draw() {
   background(0, 25);
-  let total = apps.reduce((s, a) => s + a.time, 0);
 
-  let barAreaHeight = height * 0.6;
-  let barW = width / apps.length; // equal width for each bar
+  let barAreaHeight = height * 0.55;
+  let barW = width / apps.length;
   let x = 0;
+  let baseY = barAreaHeight;
 
   for (let i = 0; i < apps.length; i++) {
     let a = apps[i];
     let w = barW;
-    let breathe = sin(frameCount * 0.025 + i * 0.9) * 8;
-    let barH = (a.time / apps[0].time) * barAreaHeight;
+    let breathe = sin(frameCount * 0.025 + i * 0.9) * 6;
+    let barH = (a.time / apps[0].time) * barAreaHeight * 0.9;
     let c = color(a.color);
     let isHovered = mouseX > x && mouseX < x + w;
-    c.setAlpha(isHovered ? 220 : 130);
+    c.setAlpha(isHovered ? 220 : 140);
     fill(c); noStroke();
-    rect(x + 4, breathe, w - 8, barH);
+    rect(x + 4, baseY - barH + breathe, w - 8, barH);
 
-    // Label below each bar
-    fill(255, isHovered ? 255 : 180);
-    textSize(13);
+    fill(255, isHovered ? 255 : 190);
+    textSize(12);
     textAlign(CENTER);
-    text(a.name + "\n" + a.time + " mins", x + w / 2, barH + breathe + 35);
+    text(a.name, x + w / 2, baseY - barH + breathe - 20);
+    text(a.time + " m", x + w / 2, baseY - barH + breathe - 6);
 
     x += w;
   }
 
+  stroke(255, 40); strokeWeight(1);
+  line(0, baseY, width, baseY);
+  noStroke();
+
   fill(0, 56); noStroke();
   rect(0, 0, width, height);
 
-  // Girl centred at bottom
-  drawGirl(width / 2, height * 0.78, min(width, height) * 0.14);
+  drawGirl(width / 2, height * 0.82, min(width, height) * 0.13);
 }
 </script>
 </body>
 </html>
-

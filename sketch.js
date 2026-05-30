@@ -10,7 +10,7 @@ let apps = [
 ];
 
 function setup() {
-  createCanvas(600,500);
+  createCanvas(1920,1080);
 }
 
 function rr(x, y, w, h, r) {
